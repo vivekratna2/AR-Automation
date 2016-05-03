@@ -6,6 +6,11 @@ class ASR_5_6_8_Test extends BaseSetting
 {
     public function test_5_6_8_Airscout()
     {
+        $position_center_x = intval($this->details['resolution_x'] / 2);
+        $position_center_y = intval($this->details['resolution_y'] / 2);
+        $floorlist_center_x = intval($this->details['resolution_x'] - (($this->details['resolution_x'] * 0.2) / 2));
+        $floorlist_center_y = $position_center_y;
+
         /*
         *   Assertion for the text above the input boxes.
         */
@@ -249,7 +254,8 @@ class ASR_5_6_8_Test extends BaseSetting
 
             This process enters 2 at the front of all the fields except for sla up & sla down fields.
         */
-        $c = 12;;
+        $c = 12;
+        $flag = 0;
         if($this->customer_details['sla_up'] === '') 
             $c++;
 
@@ -282,6 +288,13 @@ class ASR_5_6_8_Test extends BaseSetting
                 }
             } elseif ($flag == 3) {
                 if($i != 2 && $i != 3 && $i != 4 && $i != 5) {
+                    $el[$i]->click();
+                    $this->keyEvent(122);
+                    $this->keyEvent(9);
+                    $this->hideKeyboard();
+                }
+            } else {
+                if($i != 2 && $i != 3) {
                     $el[$i]->click();
                     $this->keyEvent(122);
                     $this->keyEvent(9);
@@ -435,7 +448,7 @@ class ASR_5_6_8_Test extends BaseSetting
                     $el_1 = $this->byXPath($this->basepath.'/android.widget.ListView[1]/android.view.View[1]/android.view.View[1]');
                     $action = $this->initiateTouchAction();
                     $action->longPress(['element' => $el_1])
-                        ->moveTo(['x' => $this->details['position_center_x'], 'y' => ($this->details['position_center_y'] + 25)])
+                        ->moveTo(['x' => $position_center_x, 'y' => ($position_center_y + 25)])
                         ->release()
                         ->perform();
                     sleep(2);
@@ -458,21 +471,21 @@ class ASR_5_6_8_Test extends BaseSetting
                 $el_1 = $this->byXPath($this->basepath.'/android.view.View[5]');
                 $action = $this->initiateTouchAction();
                 $action->longPress(['element' => $el_1])
-                    ->moveTo(['x' => $this->details['position_center_x'], 'y' => ($this->details['position_center_y'] + 45)])
+                    ->moveTo(['x' => $position_center_x, 'y' => ($position_center_y + 45)])
                     ->release()
                     ->perform();
                 sleep(2);
                 $this->byXPath($this->basepath."/android.view.View[11]/android.view.View[2]/android.view.View[1]")->click();
-                sleep(1);
+                sleep(2);
 
-                // Scrolling the Floor list.
-                $this->swipe($this->details['position_floorlist_x'], $this->details['position_floorlist_y'] + 100, $this->details['position_floorlist_x'], $this->details['position_floorlist_y'] - 100);
+                // Scrolling the Floor list.                
+                $this->swipe($floorlist_center_x, $floorlist_center_y + 100, $floorlist_center_x, $floorlist_center_y - 100);
                 sleep(1);
 
                 // Scrolling the Isometric view of the floors.
                 $this->byXPath($this->basepath."/android.view.View[4]")->click();
                 sleep(1);
-                $this->swipe($this->details['position_center_x'], $this->details['position_center_x'] + 100, $this->details['position_center_x'], $this->details['position_center_x'] - 100, 200);
+                $this->swipe($position_center_x, $position_center_x + 200, $position_center_x, $position_center_x - 200, 200);
                 sleep(1);
 
                 // Pressing 'Back' button and returning to the same page to see if all is ok.

@@ -1,5 +1,6 @@
 <?php
 
+// AirScout apk location.
 define('APP_PATH', realpath(dirname(__FILE__).'/../home/vivek/APK/android-armv7-debug.apk'));
 define('SLEEPY_TIME', 5);
 
@@ -35,15 +36,13 @@ class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
         'app_name' => 'AirScout Dev',
         'device_number' => 2,
         'floor_number' => 8,
-        'position_center_x' => 640,
-        'position_center_y' => 400,
-        'position_floorlist_x' => 1200,
-        'position_floorlist_y' => 400,
+        'resolution_x' => 2048,
+        'resolution_y' => 1536,
         'scroll_limit' => 3,
         'ssid_master' => 'AirScout-0008f0',
         'ssid_wifi' => 'ribera-1',
         'ssid_wifi_password' => 'R1bera07022014x1',
-        'test_loop' => 6,
+        'test_loop' => 1,
         'test_wait_time' => 7,
     ];
 
@@ -54,8 +53,8 @@ class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
         'country' => 'Neapl',
         'email' => 'john@doe.com',
         'phone' => '9234567890',
-        'sla_down' => '',
-        'sla_up' => 0,
+        'sla_down' => 15,
+        'sla_up' => '',
         'state' => 'Bagmati',
         'technician_name' => 'John Doe',
         'work_order' => 'Automation Test - Tab E',
