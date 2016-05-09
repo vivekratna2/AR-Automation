@@ -17,7 +17,7 @@ class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
                 'platformVersion' => '4.4.4',
                 'deviceName' => '',
                 'newCommandTimeout' => '60*8',
-                'appPackage' => 'com.greenlee.airscoutdev',
+                'appPackage' => 'com.greenlee.airscout_dev',
                 'appActivity' => '.AirScout'
             )
         )
@@ -31,6 +31,8 @@ class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
 
     protected $details = [
         'app_name' => 'AirScout Dev',
+        'cloud_username' => 'no-pro',
+        'cloud_password' => 'greenlee',
         'device_number' => 2,
         'floor_number' => 8,
         'resolution_x' => 2048,
@@ -44,8 +46,8 @@ class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
     ];
 
     protected $customer_details = [
-        'address_1' => 'Rato Pool',
-        'address_2' => 'Rato Pool',
+        'address_1' => 'ktm',
+        'address_2' => 'ktm',
         'city' => 'Kathmandu',
         'country' => 'Neapl',
         'email' => 'john@doe.com',

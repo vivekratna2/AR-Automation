@@ -56,14 +56,14 @@ class ASR_3_Test extends BaseSetting
         for($i=0; $i<15; $i++) {
             $this->keyEvent(67);
         }
-        $el[0]->setText('binu no-pro');
+        $el[0]->setText($this->details['cloud_username']);
         $this->hideKeyboard();
         $el[1]->click();
         $this->keyEvent(127);
         for($i=1; $i<15; $i++) {
             $this->keyEvent(67);
         }
-        $el[1]->setText('greenlee');
+        $el[1]->setText($this->details['cloud_password']);
         $this->hideKeyboard();
         $this->byName('SAVE')->click();
         sleep(20);
