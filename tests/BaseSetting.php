@@ -26,10 +26,7 @@ class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
     protected $basepath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView[1]";
 
     /*
-    *   Device      postition_center_x      position_center_y       position_floorlist_x        position_floorlist_y
-    *   Tab E       640                     400                     1200                        400
-    *   Tab A       512                     384                     940                         384
-    *   Tab S2      1024                    768                     1880                        768
+    *   The resolution_x and resolution_y are resolutions for a tablet device calculated in landscape mode.
     */
 
     protected $details = [
@@ -57,7 +54,7 @@ class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
         'sla_up' => '',
         'state' => 'Bagmati',
         'technician_name' => 'John Doe',
-        'work_order' => 'Automation Test - Tab E',
+        'work_order' => 'Automation Test',
         'work_order_comments' => 'Work order test comments.',
         'zip_code' => '44600',
     ];
