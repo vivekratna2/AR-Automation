@@ -52,6 +52,7 @@ class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
         'country' => 'Neapl',
         'email' => 'john@doe.com',
         'phone' => '9234567890',
+        'search_work_order' => '2Automation Test',
         'sla_down' => 15,
         'sla_up' => '',
         'state' => 'Bagmati',
