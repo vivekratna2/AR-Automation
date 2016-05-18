@@ -210,8 +210,6 @@ class ASR_5_6_8_Test extends BaseSetting
         $el = $this->byXPath($this->basepath."/android.widget.ListView[1]/android.widget.ListView[2]/android.view.View[2][@content-desc='Technician Information']");
         $this->assertNotNull($el);
 
-        $el = $this->byXPath($this->basepath."/android.widget.ListView[1]/android.widget.ListView[3]/android.view.View[1][@content-desc='↓".$this->customer_details['sla_down']."   ↑".$this->customer_details['sla_up']."']");
-        $this->assertNotNull($el);
         $el = $this->byXPath($this->basepath."/android.widget.ListView[1]/android.widget.ListView[3]/android.view.View[2][@content-desc='Service Level Agreement']");
         $this->assertNotNull($el);
 
@@ -485,7 +483,7 @@ class ASR_5_6_8_Test extends BaseSetting
                 // Scrolling the Isometric view of the floors.
                 $this->byXPath($this->basepath."/android.view.View[4]")->click();
                 sleep(1);
-                $this->swipe($position_center_x, $position_center_x + 200, $position_center_x, $position_center_x - 200, 200);
+                $this->swipe($position_center_x, $position_center_y + 200, $position_center_x, $position_center_y - 200, 200);
                 sleep(1);
 
                 // Pressing 'Back' button and returning to the same page to see if all is ok.

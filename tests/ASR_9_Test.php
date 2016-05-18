@@ -6,6 +6,9 @@ class ASR_9_Test extends BaseSetting
 {
     public function test_9_Surveying()
     {
+        $position_center_x = intval($this->details['resolution_x'] / 2);
+        $position_center_y = intval($this->details['resolution_y'] / 2);
+        
     	sleep(SLEEPY_TIME);
 
         // Entering text into the input boxes.
@@ -62,7 +65,7 @@ class ASR_9_Test extends BaseSetting
             $el_1 = $this->byXPath($this->basepath.'/android.widget.ListView[1]/android.view.View[1]/android.view.View[1]');
             $action = $this->initiateTouchAction();
             $action->longPress(['element' => $el_1])
-                ->moveTo(['x' =>990, 'y' =>1025])
+                ->moveTo(['x' => $position_center_x, 'y' => ($position_center_y + 25)])
                 ->release()
                 ->perform();
             sleep(2);
@@ -72,7 +75,7 @@ class ASR_9_Test extends BaseSetting
             
         // Tapping Start Test button.
         $this->byName('Start Test')->click();
-        sleep(5);
+        sleep(10);
 
         // Canceling Test.
         $this->byName('CANCEL TEST')->click();

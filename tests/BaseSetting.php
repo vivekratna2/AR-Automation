@@ -1,7 +1,7 @@
 <?php
 
 // AirScout apk location.
-define('APP_PATH', realpath(dirname(__FILE__).'/../home/vivek/APK/android-armv7-debug.apk'));
+define('APP_PATH', realpath(dirname(__FILE__).'/../home/vivek/APK/android-debug-1.5.2-4.apk'));
 define('SLEEPY_TIME', 5);
 
 class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
@@ -31,14 +31,14 @@ class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
 
     protected $details = [
         'app_name' => 'AirScout Dev',
-        'cloud_username' => 'no-pro',
+        'cloud_username' => 'binu no-pro',
         'cloud_password' => 'greenlee',
         'device_number' => 2,
         'floor_number' => 8,
-        'resolution_x' => 2048,
-        'resolution_y' => 1536,
+        'resolution_x' => 1280,
+        'resolution_y' => 800,
         'scroll_limit' => 3,
-        'ssid_master' => 'AirScout-0008f0',
+        'ssid_master' => 'AirScout-000573',
         'ssid_wifi' => 'ribera-1',
         'ssid_wifi_password' => 'R1bera07022014x1',
         'test_loop' => 1,
