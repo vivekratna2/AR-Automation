@@ -11,6 +11,12 @@ class ASR_5_6_8_Test extends BaseSetting
         $floorlist_center_x = intval($this->details['resolution_x'] - (($this->details['resolution_x'] * 0.2) / 2));
         $floorlist_center_y = $position_center_y;
 
+        // To adjust the xpath when the parking lot has more devices and there is scroll bar which changes the parking lot's xpath.
+        $viewpath = 0;
+        if($this->details['device_number'] > 4) {
+            $viewpath = 1;
+        }
+
         /*
         *   Assertion for the text above the input boxes.
         */
@@ -394,24 +400,29 @@ class ASR_5_6_8_Test extends BaseSetting
 
             if($i==1) {
                 // Selecting floor plan & rotating 90 degree.
-                $this->byXPath($this->basepath."/android.widget.ListView[2]/android.view.View[2]")->click();
+                if($this->details['device_number'] <= 4) {
+                    $this->byXPath($this->basepath."/android.widget.ListView[2]/android.view.View[2]")->click();
+                } else {
+                    $this->byXPath($this->basepath."/android.widget.ListView[1]/android.view.View[2]")->click();
+                }
                 sleep(1);
-                $this->byXPath($this->basepath."/android.view.View[9]/android.widget.Image[1]")->click();
 
+                $this->byXPath($this->basepath."/android.view.View[" . (9 + $viewpath) . "]/android.widget.Image[1]")->click();
+                
                 // Tapping on button 'USE FLOOR PLAN'.
-                $this->byXPath($this->basepath."/android.view.View[10][@content-desc='USE FLOOR PLAN']")->click();
+                $this->byXPath($this->basepath."/android.view.View[" . (10 + $viewpath) . "][@content-desc='USE FLOOR PLAN']")->click();
                 sleep(1);
 
                 // Tapping on button 'CANCEL'.
-                $this->byXPath($this->basepath."/android.view.View[8]/android.view.View[3]/android.view.View[1][@content-desc='CANCEL']")->click();
+                $this->byXPath($this->basepath."/android.view.View[" . (8 + $viewpath) . "]/android.view.View[3]/android.view.View[1][@content-desc='CANCEL']")->click();
                 sleep(1);
 
                 // Tapping on button 'USE FLOOR PLAN'.
-                $this->byXPath($this->basepath."/android.view.View[10][@content-desc='USE FLOOR PLAN']")->click();
+                $this->byXPath($this->basepath."/android.view.View[" . (10 + $viewpath) . "][@content-desc='USE FLOOR PLAN']")->click();
                 sleep(1);              
 
                 // Tapping on button 'SAVE'.
-                $this->byXPath($this->basepath."/android.view.View[8]/android.view.View[3]/android.view.View[2][@content-desc='SAVE']")->click();
+                $this->byXPath($this->basepath."/android.view.View[" . (8 + $viewpath) . "]/android.view.View[3]/android.view.View[2][@content-desc='SAVE']")->click();
                 sleep(1);
 
                 // Asserting the text 'Step 1 of 3' next to the Back button.
@@ -424,32 +435,43 @@ class ASR_5_6_8_Test extends BaseSetting
                 $el = $this->byXPath($this->basepath."/android.view.View[2]/android.view.View[1]/android.view.View[2][@content-desc='Test Setup']");
                 $this->assertNotNull($el);
 
-                $this->byXPath($this->basepath."/android.view.View[10]/android.view.View[2]/android.view.View[1][@content-desc='OK']")->click();
+                $this->byXPath($this->basepath."/android.view.View[" . (10 + $viewpath) . "]/android.view.View[2]/android.view.View[1][@content-desc='OK']")->click();
                 sleep(1);
                 
 
                 // Adding floors.
                 for($c=1; $c < $this->details['floor_number']; $c++)
                 {
-                    $this->byXPath($this->basepath."/android.view.View[7][@content-desc='Add Floor']")->click();
+                    $this->byXPath($this->basepath."/android.view.View[" . (7 + $viewpath) . "][@content-desc='Add Floor']")->click();
                     sleep(1);
-                    $this->byXPath($this->basepath."/android.view.View[9]/android.view.View[3]/android.view.View[2][@content-desc='SAVE']")->click();
+                    $this->byXPath($this->basepath."/android.view.View[" . (9 + $viewpath) . "]/android.view.View[3]/android.view.View[2][@content-desc='SAVE']")->click();
                     sleep(1);
                 }
 
                 // Adding devices to various floors.
+                $devices = $this->details['device_number'];
                 for($c=1; $c <= $this->details['device_number']; $c++)
                 {
-                    $this->byXPath($this->basepath."/android.widget.ListView[2]/android.view.View[".($c+1)."]")->click();
+                    if($devices <= 4) {
+                        $this->byXPath($this->basepath."/android.widget.ListView[2]/android.view.View[".($c+1)."]")->click();
+                    } else {
+                        $this->byXPath($this->basepath."/android.widget.ListView[1]/android.view.View[".($c+1)."]")->click();
+                    }
                     sleep(1);
                     // Draging the master and pucks.
-                    $el_1 = $this->byXPath($this->basepath.'/android.widget.ListView[1]/android.view.View[1]/android.view.View[1]');
+                    if($devices <= 4) {
+                        $el_1 = $this->byXPath($this->basepath.'/android.widget.ListView[1]/android.view.View[1]/android.view.View[1]');
+                    } else {
+                        $el_1 = $this->byXPath($this->basepath.'/android.view.View[5]/android.widget.ListView[1]/android.view.View[1]/android.view.View[1]');
+                    }
                     $action = $this->initiateTouchAction();
                     $action->longPress(['element' => $el_1])
                         ->moveTo(['x' => $position_center_x, 'y' => ($position_center_y + 25)])
                         ->release()
                         ->perform();
                     sleep(2);
+
+                    $devices = $devices - 1;
 
                 }
 

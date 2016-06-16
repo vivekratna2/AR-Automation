@@ -1,7 +1,7 @@
 <?php
 
 // AirScout apk location.
-define('APP_PATH', realpath(dirname(__FILE__).'/../home/vivek/APK/android-debug-1.5.2-4.apk'));
+define('APP_PATH', realpath(dirname(__FILE__).'/../home/vivek/APK/android-debug-1.5.2-9.apk'));
 define('SLEEPY_TIME', 5);
 
 class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
@@ -26,19 +26,19 @@ class BaseSetting extends PHPUnit_Extensions_AppiumTestCase
     protected $basepath = "//android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.webkit.WebView[1]";
 
     /*
-    *   The resolution_x and resolution_y are resolutions for a tablet device calculated in landscape mode.
+    *   The resolution_x and resolution_y are resolutions for a tablet device meassured in landscape mode.
     */
 
     protected $details = [
         'app_name' => 'AirScout Dev',
-        'cloud_username' => 'binu no-pro',
+        'cloud_username' => 'vivek no-pro',
         'cloud_password' => 'greenlee',
-        'device_number' => 2,
-        'floor_number' => 8,
+        'device_number' => 4,
+        'floor_number' => 4,
         'resolution_x' => 1280,
         'resolution_y' => 800,
         'scroll_limit' => 3,
-        'ssid_master' => 'AirScout-000573',
+        'ssid_master' => 'AirScout-0008ec',
         'ssid_wifi' => 'ribera-1',
         'ssid_wifi_password' => 'R1bera07022014x1',
         'test_loop' => 1,
